@@ -10,23 +10,29 @@ export async function POST(req) {
     // For this guide, log payload to console
     const { id } = evt.data
     const eventType = evt.type
-        if (evt.type === 'user.created') {
-        // console.log('userId:', evt.data)
-        try{
+    if (evt.type === 'user.created') {
+        try {
             await DBConnect();
-            let lastName;
-            if (evt.data.last_name===null) lastName=' ';
-            else lastName = evt.data.last_name;
-                await User.create({
-                    clerkId:evt.data.id,
-                    name:evt.data.first_name+lastName,
-                    email: evt.data.email_addresses[0]?.email_address,
-            })
-            console.log("User created with Email Address: "+evt.data.email_addresses.email_address);
-        }catch(err){
-            console.log(err);
+            console.log("DB Connected");
+
+            let lastName = evt.data.last_name || ' ';
+            const email = evt.data.email_addresses[0]?.email_address;
+
+            console.log("Creating user with email:", email);
+
+            await User.create({
+            clerkId: evt.data.id,
+            name: evt.data.first_name + lastName,
+            email,
+            });
+
+            console.log("User successfully created");
+        } catch (err) {
+            console.error("Error during user creation:", err);
         }
-        }
+    } else {
+    console.log("Unhandled event type:", evt.type);
+    }
 
     return new Response('Webhook received', { status: 200 })
   } catch (err) {
