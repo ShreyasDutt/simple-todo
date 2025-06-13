@@ -16,7 +16,6 @@ const Navbar = () => {
     <p className='font-bold'>Notes</p>
     </Link>
      <div className='flex items-center py-7 px-5 justify-end gap-5'>
-            
             <ModeToggle/>
             <SignedOut>
               <Link href={'/sign-in'}>
