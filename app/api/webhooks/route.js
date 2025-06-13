@@ -20,7 +20,7 @@ export async function POST(req) {
             await User.create({
                     clerkId:evt.data.id,
                     name:evt.data.first_name+lastName,
-                    email: evt.data.email_addresses.email_address,
+                    email: evt.data.email_addresses[0]?.email_address,
             })
             console.log("User created with Email Address: "+evt.data.email_addresses.email_address);
         }catch(err){
