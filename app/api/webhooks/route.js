@@ -13,7 +13,7 @@ export async function POST(req) {
         if (evt.type === 'user.created') {
         // console.log('userId:', evt.data)
         try{
-            DBConnect();
+            await DBConnect();
             let lastName;
             if (evt.data.last_name===null) lastName=' ';
             else lastName = evt.data.last_name;
