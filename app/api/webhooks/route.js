@@ -9,7 +9,7 @@ export async function POST(req) {
     const { id } = evt.data
     const eventType = evt.type
         if (evt.type === 'user.created') {
-        console.log('userId:', evt.data.id)
+        console.log('userId:', evt.data)
         }
 
     return new Response('Webhook received', { status: 200 })
