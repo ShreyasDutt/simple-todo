@@ -17,7 +17,7 @@ export async function POST(req) {
             let lastName;
             if (evt.data.last_name===null) lastName=' ';
             else lastName = evt.data.last_name;
-            await User.create({
+                await User.create({
                     clerkId:evt.data.id,
                     name:evt.data.first_name+lastName,
                     email: evt.data.email_addresses[0]?.email_address,
