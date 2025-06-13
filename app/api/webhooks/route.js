@@ -30,7 +30,17 @@ export async function POST(req) {
         } catch (err) {
             console.error("Error during user creation:", err);
         }
-    } else {
+    }
+    else if(evt.type === 'user.deleted'){
+        try{
+            await DBConnect();
+            const FoundUser = await User.findOneAndDelete({clerkId: evt.data.id});
+            if(!FoundUser) return console.log("User doesn't Exist");    
+            console.log("User deleted with Email: "+FoundUser.email);
+        }catch(err){
+            console.log(err)
+        }
+    }else {
     console.log("Unhandled event type:", evt.type);
     }
 
