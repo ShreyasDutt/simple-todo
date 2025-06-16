@@ -15,10 +15,12 @@ export async function POST(req) {
             await DBConnect();
             console.log("DB Connected");
 
+            console.log("Creating user ...")
             let lastName = evt.data.last_name || ' ';
             const email = evt.data.email_addresses[0]?.email_address;
-
+            console.log("Creating user with Data : "+email);
             const FoundUser = await User.findOne({clerkId:evt.data.id});
+            console.log("Checking if user Exists")
             if(FoundUser) return console.log("User already exists");
             console.log("Creating user with email:", email);
 
@@ -27,7 +29,6 @@ export async function POST(req) {
             name: evt.data.first_name + lastName,
             email,
             });
-
             console.log("User successfully created");
         } catch (err) {
             console.error("Error during user creation:", err);
