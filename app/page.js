@@ -26,7 +26,7 @@ const page = async () => {
         <div className="flex flex-col items-center justify-center h-[70vh] text-center text-muted-foreground p-4">
           <Notebook className="w-16 h-16 mb-4 text-primary" />
           <h2 className="text-2xl font-semibold mb-2">No Todos Yet</h2>
-          <p className="text-sm">You haven't added any tasks. Start planning your day now!</p>
+          <p className="text-sm">You haven&apos;t added any tasks. Start planning your day now!</p>
         </div>
       )}
 
