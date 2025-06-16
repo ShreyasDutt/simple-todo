@@ -6,6 +6,7 @@ import {
 } from '@clerk/nextjs'
 import { dark } from "@clerk/themes";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
               >
                 <Navbar/>
                 {children}
+                <Toaster/>
               </ThemeProvider>
             
             </body>

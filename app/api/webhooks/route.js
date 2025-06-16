@@ -18,6 +18,8 @@ export async function POST(req) {
             let lastName = evt.data.last_name || ' ';
             const email = evt.data.email_addresses[0]?.email_address;
 
+            const FoundUser = await User.findOne({clerkId:evt.data.id});
+            if(FoundUser) return console.log("User already exists");
             console.log("Creating user with email:", email);
 
             await User.create({

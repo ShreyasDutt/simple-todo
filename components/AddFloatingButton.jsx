@@ -1,22 +1,21 @@
+
 import React from 'react'
 import { Button } from './ui/button'
 import { Plus } from 'lucide-react'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+import AddForm from './AddForm'
+
 
 const AddFloatingButton = () => {
+
   return (
     <div>
          <Dialog>
-      <form>
+      
         <DialogTrigger asChild>
           <Button
         className="fixed bottom-6 right-6 rounded-full w-14 h-14 p-0 
@@ -32,23 +31,9 @@ const AddFloatingButton = () => {
         <Plus className="w-6 h-6" />
       </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Add Todo</DialogTitle>
-          </DialogHeader>
-          <div className="grid gap-4">
-            <div className="grid gap-3">
-              <Input id="content" name="content" placeholder='Do dishes....' defaultValue='' />
-            </div>
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button type="submit">Add</Button>
-          </DialogFooter>
-        </DialogContent>
-      </form>
+         <DialogContent className="sm:max-w-[425px]">
+            <AddForm/>
+           </DialogContent>
     </Dialog>
     </div>
   )
