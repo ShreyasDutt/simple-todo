@@ -5,7 +5,7 @@ import { Notebook } from 'lucide-react';
 
 const page = async () => {
   const data = await getTodos();
-  const Todos = data.Todos;
+  const Todos = data?.Todos || [];
 
   return (
     <div className="relative min-h-screen">
