@@ -41,6 +41,7 @@ export const getTodos = async() =>{
 
 export const CheckTodo = async(todoID) =>{
     try{
+        await DBConnect();
         const FoundTodo = await Todo.findById({_id:todoID});
         FoundTodo.done = !(FoundTodo.done);
         await FoundTodo.save();
@@ -52,9 +53,33 @@ export const CheckTodo = async(todoID) =>{
 
 export const DeleteTodo = async(todoID) =>{
     try{
+        await DBConnect();
         await Todo.findByIdAndDelete({_id:todoID});
         revalidatePath('/');
         return {success:true,message:"Todo deleted"}
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const getSingleTodo = async (todoID) =>{
+    try {
+        await DBConnect();
+        const FoundTodo = await Todo.findById({_id:todoID});
+        return {success:true,Todo:FoundTodo};
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const EditTodo = async (todoID,formData) =>{
+    try{
+        await DBConnect();
+        const Newcontent = formData.get('content');
+        await Todo.findByIdAndUpdate({_id:todoID},{content:Newcontent});
+        revalidatePath('/');
+        
+
     }catch(err){
         console.log(err);
     }

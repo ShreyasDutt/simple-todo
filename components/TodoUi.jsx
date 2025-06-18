@@ -3,8 +3,8 @@ import { CheckTodo, DeleteTodo } from '@/app/actions/User.actions'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Trash2 } from 'lucide-react'
-import React from 'react'
 import { toast } from 'sonner'
+import EditformMenu from './EditformMenu'
 
 const TodoUi = ({date, content,done,id}) => {
     const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -35,6 +35,7 @@ const TodoUi = ({date, content,done,id}) => {
             >
               <Trash2 className="h-4 w-4" />
             </Button>
+      <EditformMenu todoId={id} content={content}/>
           </div>
         </div>
 
